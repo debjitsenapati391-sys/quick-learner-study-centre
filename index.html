@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,23 @@
 
 <body>
 
-<header>
-<header>
+<!-- 🔒 LOCK SCREEN -->
+<div id="entryScreen" class="lock-screen">
+  <div class="login-box">
+    <h2>Quick Learner</h2>
 
+    <button onclick="showAdmin()">Login as Admin</button>
+    <button onclick="enterStudent()">Continue as Student</button>
+
+    <div id="adminLogin" style="display:none;">
+      <input type="password" id="adminPass" placeholder="Enter Password">
+      <button onclick="checkAdmin()">Enter</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
 <h1 class="logo">Quick Learner</h1>
 
 <nav>
@@ -27,11 +42,9 @@
 <div>📞 +91 9830988800</div>
 <div><a href="https://wa.me/919830988800" target="_blank">💬 WhatsApp</a></div>
 </div>
-
-</header>
-</header>
 </header>
 
+<!-- HOME -->
 <section id="home" class="hero">
 <div class="hero-content">
 <h1 id="typing"></h1>
@@ -45,12 +58,14 @@
 </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section">
 <h2>About Us</h2>
 <p>We provide notes, mock tests and study materials.</p>
 </section>
 
-<section id="classes" class="section">
+<!-- CLASSES -->
+<section id="classes" class="section hidden">
 <h2>Classes</h2>
 <div class="cards">
 <div class="card" onclick="openClass(8)">Class 8</div>
@@ -61,6 +76,7 @@
 </div>
 </section>
 
+<!-- CLASS CONTENT -->
 <section id="classContent" class="section hidden">
 <h2 id="classTitle"></h2>
 
@@ -72,26 +88,23 @@
 <div id="pdfViewer"></div>
 
 <h3>Mock Test</h3>
+
 <div class="tab-buttons">
 <button onclick="showTab('notes')">Notes</button>
 <button onclick="showTab('mock')">Mock Test</button>
 </div>
 
 <div id="notesTab" class="tab-content">
-<div class="upload-box" id="dropArea">
-<p>Drag & Drop PDF</p>
-<input type="file" id="fileInput" accept="application/pdf">
-</div>
 <div id="pdfViewer"></div>
 </div>
 
 <div id="mockTab" class="tab-content hidden">
-<h3>Mock Test</h3>
 <input type="text" id="formLink" placeholder="Paste Google Form link">
 <button onclick="openForm()">Start Test</button>
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="section">
 <h2>Contact</h2>
 <input type="text" id="fb" placeholder="Facebook link">
@@ -104,7 +117,26 @@
 <p>© 2026 Quick Learner Study Centre</p>
 </footer>
 
-<script src="script.js"></script>
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_KEY",
+  authDomain: "PASTE",
+  projectId: "PASTE",
+  storageBucket: "PASTE",
+  messagingSenderId: "PASTE",
+  appId: "PASTE"
+};
+
+const app = initializeApp(firebaseConfig);
+window.storage = getStorage(app);
+</script>
+
+<!-- JS -->
+<script  src="script.js"></script>
+
 </body>
 </html>
-
